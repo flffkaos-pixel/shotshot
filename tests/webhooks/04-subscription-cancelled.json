@@ -1,0 +1,16 @@
+{
+  "id": "WH-TEST-12348",
+  "event_version": "1.0",
+  "create_time": "2026-10-01T10:00:00Z",
+  "resource_type": "subscription",
+  "resource": {
+    "id": "I-TEST-SUB123",
+    "status": "CANCELLED",
+    "subscriber": {
+      "payer_id": "QTESTPAYER123"
+    }
+  },
+  "event_type": "BILLING.SUBSCRIPTION.CANCELLED",
+  "summary": "Subscription cancelled",
+  "links": []
+}

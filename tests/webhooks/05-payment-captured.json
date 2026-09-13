@@ -1,0 +1,18 @@
+{
+  "id": "WH-TEST-12349",
+  "event_version": "1.0",
+  "create_time": "2026-09-30T12:00:00Z",
+  "resource_type": "sale",
+  "resource": {
+    "id": "TRX-TEST-CAPTURE123",
+    "status": "COMPLETED",
+    "amount": {
+      "total": "5.00",
+      "currency": "USD"
+    },
+    "payer_id": "QTESTPAYER123"
+  },
+  "event_type": "PAYMENT.SALE.COMPLETED",
+  "summary": "Payment captured",
+  "links": []
+}

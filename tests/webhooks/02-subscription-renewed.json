@@ -1,0 +1,19 @@
+{
+  "id": "WH-TEST-12346",
+  "event_version": "1.0",
+  "create_time": "2026-09-30T12:00:00Z",
+  "resource_type": "subscription",
+  "resource": {
+    "id": "I-TEST-SUB123",
+    "status": "ACTIVE",
+    "subscriber": {
+      "payer_id": "QTESTPAYER123"
+    },
+    "billing_info": {
+      "next_billing_time": "2026-10-30T12:00:00Z"
+    }
+  },
+  "event_type": "BILLING.SUBSCRIPTION.RENEWED",
+  "summary": "Subscription renewed",
+  "links": []
+}

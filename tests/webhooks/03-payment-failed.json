@@ -1,0 +1,19 @@
+{
+  "id": "WH-TEST-12347",
+  "event_version": "1.0",
+  "create_time": "2026-09-15T08:00:00Z",
+  "resource_type": "subscription",
+  "resource": {
+    "id": "I-TEST-SUB123",
+    "status": "SUSPENDED",
+    "subscriber": {
+      "payer_id": "QTESTPAYER123"
+    },
+    "billing_info": {
+      "next_billing_time": "2026-09-30T12:00:00Z"
+    }
+  },
+  "event_type": "BILLING.SUBSCRIPTION.PAYMENT.FAILED",
+  "summary": "Payment failed",
+  "links": []
+}

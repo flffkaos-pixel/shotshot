@@ -1,0 +1,21 @@
+{
+  "id": "WH-TEST-12345",
+  "event_version": "1.0",
+  "create_time": "2026-08-30T12:00:00Z",
+  "resource_type": "subscription",
+  "resource": {
+    "id": "I-TEST-SUB123",
+    "status": "ACTIVE",
+    "status_change_note": "Test webhook",
+    "subscriber": {
+      "payer_id": "QTESTPAYER123",
+      "email_address": "test@example.com"
+    },
+    "billing_info": {
+      "next_billing_time": "2026-09-30T12:00:00Z"
+    }
+  },
+  "event_type": "BILLING.SUBSCRIPTION.ACTIVATED",
+  "summary": "Subscription activated",
+  "links": []
+}
