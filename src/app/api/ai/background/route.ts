@@ -1,11 +1,11 @@
 // ponytail: DALL-E 3 image generation for slide backgrounds. BYOK.
 // User supplies OpenAI key. We never see the prompt or result.
+// ponytail: runtime removed — OpenNext/Workers handles Node runtime via nodejs_compat.
 
 import { NextResponse } from "next/server";
 import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
-export const runtime = "edge";
 
 type Body = {
   prompt: string;

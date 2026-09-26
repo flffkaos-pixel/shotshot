@@ -1,0 +1,65 @@
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+# ponytail: build on Linux CI (Windows local build is unsupported by OpenNext),
+# deploy with wrangler. Requires 2 GitHub secrets:
+#   CLOUDFLARE_API_TOKEN  — from dash.cloudflare.com > My Profile > API Tokens
+#   CLOUDFLARE_ACCOUNT_ID — from dash.cloudflare.com (right sidebar)
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NEXT_TELEMETRY_DISABLED: 1
+
+jobs:
+  deploy:
+    name: Build + Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: TypeScript check
+        run: npx tsc --noEmit
+
+      - name: Build with OpenNext
+        run: npx opennextjs-cloudflare build
+
+      - name: Verify build output
+        run: |
+          test -f .open-next/worker.js || { echo "FAIL: worker.js missing"; exit 1; }
+          test -d .open-next/assets || { echo "FAIL: assets missing"; exit 1; }
+          echo "Build output OK"
+
+      - name: Deploy to Cloudflare Workers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy
+
+      - name: Smoke test deployment
+        run: |
+          sleep 10
+          # Workers URL is https://shotshot.<subdomain>.workers.dev — get it from wrangler output
+          URL=$(npx wrangler deployments list 2>/dev/null | grep -o 'https://[a-z0-9.-]*workers.dev' | head -1 || echo "")
+          if [ -n "$URL" ]; then
+            code=$(curl -s -w "%{http_code}" -o /dev/null "$URL/api/health" || echo "000")
+            echo "Health check $URL/api/health: $code"
+          else
+            echo "Could not determine workers.dev URL (custom domain may be set) — skipping smoke test"
+          fi

@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
-export const runtime = "edge";
 
 // ponytail: translate an array of {label, headline} into N target locales in one call.
 // GPT-4o-mini handles 80+ locales well. input tokens ~ 200/output locale.

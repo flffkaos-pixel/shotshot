@@ -1,0 +1,13 @@
+
+┌─────────────────────────────┐
+│ OpenNext — Cloudflare build │
+└─────────────────────────────┘
+
+WARN OpenNext is not fully compatible with Windows.
+WARN For optimal performance, it is recommended to use Windows Subsystem for Linux (WSL).
+WARN While OpenNext may function on Windows, it could encounter unpredictable failures during runtime.
+App directory: C:\Users\나가\shotshot
+Next.js version : 15.0.3
+@opennextjs/cloudflare version: 1.20.6
+@opennextjs/aws version: 4.1.4
+WARN workerd compatibility_date: 2025-09-01, consider updating your wrangler config to a more recent date to benefit from the latest features and fixes.

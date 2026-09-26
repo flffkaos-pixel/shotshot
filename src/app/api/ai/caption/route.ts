@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { getClientIp, rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 export const dynamic = "force-dynamic";
-export const runtime = "edge";
 
 type Body = {
   appName: string;

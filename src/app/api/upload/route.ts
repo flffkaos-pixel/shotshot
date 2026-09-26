@@ -1,12 +1,10 @@
-// ponytail: R2 upload via fetch+HMAC (Edge compatible). No fs/path/crypto imports — pure fetch + Web Crypto.
-// On Cloudflare/Pages, R2 is the only storage option. On Vercel/local, you can also
-// fall back to Vercel Blob (configured separately).
+// ponytail: R2 upload via fetch+HMAC (works everywhere). No fs/path imports — pure fetch + Web Crypto.
+// On Cloudflare Workers, R2 is the only storage option.
 
 import { NextResponse } from "next/server";
 import { r2Put } from "@/lib/r2";
 
 export const dynamic = "force-dynamic";
-export const runtime = "edge";
 
 const MIME_EXT: Record<string, string> = {
   "image/png": "png",
